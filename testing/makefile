@@ -1,5 +1,5 @@
 # Por aqui caminho relativo para o codigo
-SCRIPT=src/main.py
+SCRIPT=../project3.py
 # Por aqui caminho relativo para a pasta dos testes
 TESTS_DIR=tests
 

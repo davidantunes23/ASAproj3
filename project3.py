@@ -31,11 +31,6 @@ for i in range(num_toys, num_toys + num_packs):
     packs[args_list[1]-1].append(xi)
     packs[args_list[2]-1].append(xi)
 
-print(profit)
-print(capacity)
-print(packs)
-print(total_capacity)
-
 prob = LpProblem("Problema", LpMaximize)
 
 prob += lpSum(coef * var for coef, var in profit)
@@ -45,4 +40,4 @@ for i in range(num_toys):
     prob += lpSum(packs[i]) <= capacity[i]
 
 prob.solve(GLPK(msg=0))
-print("Valor da funcao objectivo:", value(prob.objective))
+print(value(prob.objective))
