@@ -33,11 +33,13 @@ for i in range(num_toys, num_toys + num_packs):
 
 prob = LpProblem("Problema", LpMaximize)
 
-prob += lpSum(coef * var for coef, var in profit)
-prob += lpSum(coef * var for coef, var in total_capacity) <= max_toys
-
 for i in range(num_toys):
-    prob += lpSum(packs[i]) <= capacity[i]
+    if len(packs[i]) > 1:
+        prob += lpSum(packs[i]) <= capacity[i]
+
+prob += lpSum(coef * var for coef, var in profit)
+
+prob += lpSum(coef * var for coef, var in total_capacity) <= max_toys
 
 prob.solve(GLPK(msg=0))
 print(value(prob.objective))
